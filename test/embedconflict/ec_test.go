@@ -98,7 +98,7 @@ func TestRepeatedEmbed(t *testing.T) {
 	t.Logf("received error = %v and output = %v", err, dataStr)
 	warning := "ERROR: found repeated embedded field B in message A"
 	if !strings.Contains(dataStr, warning) {
-		t.Errorf("Expected " + warning)
+		t.Error("Expected " + warning)
 	}
 }
 
@@ -115,7 +115,7 @@ func TestTakesTooLongToDebug(t *testing.T) {
 	t.Logf("received error = %v and output = %v", err, dataStr)
 	warning := "ERROR: found embedded bytes field"
 	if !strings.Contains(dataStr, warning) {
-		t.Errorf("Expected " + warning)
+		t.Error("Expected " + warning)
 	}
 }
 

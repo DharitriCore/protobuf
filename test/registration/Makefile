@@ -28,6 +28,10 @@
 
 test:
 	go install github.com/gogo/protobuf/protoc-gen-gogo
-	(protoc --proto_path=../../../../../:../../protobuf/:. --gogo_out=. registration.proto)
+	tmp=$$(mktemp -d); \
+	mkdir -p "$$tmp/github.com/gogo"; \
+	ln -s "$$(go list -m -f '{{.Dir}}')" "$$tmp/github.com/gogo/protobuf"; \
+	protoc --proto_path="$$tmp" --proto_path=../../protobuf --proto_path=. --gogo_out=. registration.proto; \
+	rm -rf "$$tmp"
 	cp registration_test.go.in registration_test.go
 	go test ./...
