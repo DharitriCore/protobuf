@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Protocol Buffers for Go with Gadgets
 #
 # Copyright (c) 2015, The GoGo Authors. All rights reserved.
@@ -28,4 +30,4 @@
 
 regenerate:
 	go install github.com/gogo/protobuf/protoc-gen-gogofast
-	protoc  --proto_path=../../../../../:../../protobuf/:. --gogofast_out=. fuzz.proto
+	protoc  --proto_path=$(GOGO_PROTOBUF_PROTO_PATH) --gogofast_out=. fuzz.proto

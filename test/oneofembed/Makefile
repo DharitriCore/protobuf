@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Protocol Buffers for Go with Gadgets
 #
 # Copyright (c) 2013, The GoGo Authors. All rights reserved.
@@ -27,5 +29,5 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 regenerate:
-	protoc-min-version --proto_path=../../../../../:../../protobuf/:. --version="3.0.0" --gogo_out=. *.proto
+	protoc-min-version --proto_path=$(GOGO_PROTOBUF_PROTO_PATH) --version="3.0.0" --gogo_out=. *.proto
 

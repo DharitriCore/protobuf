@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Protocol Buffers for Go with Gadgets
 #
 # Copyright (c) 2013, The GoGo Authors. All rights reserved.
@@ -27,5 +29,5 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 regenerate:
-	(protoc --proto_path=../../../../../:../../protobuf/:. --gogo_out=. proto.proto)
-	(protoc --proto_path=../../../../../:../../protobuf/:. --gogo_out=. subpkg/subproto.proto)
+	(protoc --proto_path=$(GOGO_PROTOBUF_PROTO_PATH) --gogo_out=. proto.proto)
+	(protoc --proto_path=$(GOGO_PROTOBUF_PROTO_PATH) --gogo_out=. subpkg/subproto.proto)

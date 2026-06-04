@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Protocol Buffers for Go with Gadgets
 #
 # Copyright (c) 2013, The GoGo Authors. All rights reserved.
@@ -29,16 +31,16 @@
 regenerate:
 	go install github.com/gogo/protobuf/protoc-gen-gogofast
 	protoc --gogofast_out=./fast/ vanity.proto
-	protoc --proto_path=../../:../../../../../:../../protobuf/:. --gogofast_out=./fast/ gogovanity.proto
-	protoc-min-version -version="3.0.0" --proto_path=../../:../../../../../:../../protobuf/:. --gogofast_out=./fast/ proto3.proto
+	protoc --proto_path=../../:$(GOGO_PROTOBUF_PROTO_PATH) --gogofast_out=./fast/ gogovanity.proto
+	protoc-min-version -version="3.0.0" --proto_path=../../:$(GOGO_PROTOBUF_PROTO_PATH) --gogofast_out=./fast/ proto3.proto
 	go install github.com/gogo/protobuf/protoc-gen-gogofaster
 	protoc --gogofaster_out=./faster/ vanity.proto
-	protoc --proto_path=../../:../../../../../:../../protobuf/:. --gogofaster_out=./faster/ gogovanity.proto
-	protoc-min-version -version="3.0.0" --proto_path=../../:../../../../../:../../protobuf/:. --gogofaster_out=./faster/ proto3.proto
+	protoc --proto_path=../../:$(GOGO_PROTOBUF_PROTO_PATH) --gogofaster_out=./faster/ gogovanity.proto
+	protoc-min-version -version="3.0.0" --proto_path=../../:$(GOGO_PROTOBUF_PROTO_PATH) --gogofaster_out=./faster/ proto3.proto
 	go install github.com/gogo/protobuf/protoc-gen-gogoslick
 	protoc --gogoslick_out=./slick/ vanity.proto
-	protoc --proto_path=../../:../../../../../:../../protobuf/:. --gogoslick_out=./slick/ gogovanity.proto
-	protoc-min-version -version="3.0.0" --proto_path=../../:../../../../../:../../protobuf/:. --gogoslick_out=./slick/ proto3.proto
+	protoc --proto_path=../../:$(GOGO_PROTOBUF_PROTO_PATH) --gogoslick_out=./slick/ gogovanity.proto
+	protoc-min-version -version="3.0.0" --proto_path=../../:$(GOGO_PROTOBUF_PROTO_PATH) --gogoslick_out=./slick/ proto3.proto
 
 test:
 	go install github.com/gogo/protobuf/protoc-gen-gofast

@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Protocol Buffers for Go with Gadgets
 #
 # Copyright (c) 2016, The GoGo Authors. All rights reserved.
@@ -35,5 +37,5 @@ regenerate:
 	Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,\
 	Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,\
 	Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types:. \
-	--proto_path=../../../../../:../../protobuf/:. types.proto
+	--proto_path=$(GOGO_PROTOBUF_PROTO_PATH) types.proto
 	find combos -type d -not -name combos -exec cp types_test.go.in {}/types_test.go \;

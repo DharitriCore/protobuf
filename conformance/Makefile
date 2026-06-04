@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Go support for Protocol Buffers - Google's data interchange format
 #
 # Copyright 2016 The Go Authors.  All rights reserved.
@@ -49,7 +51,7 @@ test:
 	./test.sh $(PROTOBUF_ROOT)
 
 regenerate:
-	protoc-min-version --version="3.0.0" --proto_path=$(GOPATH)/src:$(GOPATH)/src/github.com/gogo/protobuf/protobuf:. --gogo_out=\
+	protoc-min-version --version="3.0.0" --proto_path=$(GOGO_PROTOBUF_PROTO_PATH) --gogo_out=\
 	Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types,\
 	Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,\
 	Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,\

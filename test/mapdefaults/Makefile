@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Protocol Buffers for Go with Gadgets
 #
 # Copyright (c) 2017, The GoGo Authors. All rights reserved.
@@ -29,7 +31,7 @@
 regenerate:
 	go install github.com/gogo/protobuf/protoc-gen-combo
 	go install github.com/gogo/protobuf/protoc-gen-gogofast
-	protoc-gen-combo --version="3.0.0" --proto_path=../../protobuf/:../../../../../:. --gogo_out=. map.proto
+	protoc-gen-combo --version="3.0.0" --proto_path=$(GOGO_PROTOBUF_PROTO_PATH) --gogo_out=. map.proto
 	find combos -type d -not -name combos -exec cp map_test.go.in {}/map_test.go \;
 	cp unknown_test.go.in ./combos/unmarshaler/unknown_test.go
 	cp unknown_test.go.in ./combos/both/unknown_test.go

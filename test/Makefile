@@ -1,3 +1,5 @@
+include $(shell go list -m -f '{{.Dir}}')/make/proto_path.mk
+
 # Protocol Buffers for Go with Gadgets
 #
 # Copyright (c) 2013, The GoGo Authors. All rights reserved.
@@ -29,8 +31,8 @@
 regenerate:
 	go install github.com/gogo/protobuf/protoc-gen-gogo
 	go install github.com/gogo/protobuf/protoc-gen-combo
-	protoc --gogo_out=. --proto_path=../protobuf/:../:../../../../:. thetest.proto
-	protoc-gen-combo --default=false --gogo_out=. --proto_path=../protobuf/:../:../../../../:. thetest.proto
+	protoc --gogo_out=. --proto_path=../:$(GOGO_PROTOBUF_PROTO_PATH) thetest.proto
+	protoc-gen-combo --default=false --gogo_out=. --proto_path=../:$(GOGO_PROTOBUF_PROTO_PATH) thetest.proto
 	cp uuid.go ./combos/both/
 	cp uuid.go ./combos/marshaler/
 	cp uuid.go ./combos/unmarshaler/
