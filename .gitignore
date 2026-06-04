@@ -1,0 +1,9 @@
+._*
+*.js
+*.js.map
+
+# Conformance test output and transient files.
+conformance/failing_tests.txt
+
+# Repo-local proto import root created by make/proto_path.mk.
+.proto_path/
