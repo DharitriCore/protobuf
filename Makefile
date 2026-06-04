@@ -163,7 +163,7 @@ drone:
 	(cd $(GOPATH)/src/github.com/gogo/protobuf && make buildserverall)
 
 testall:
-	go get -u github.com/golang/protobuf/proto
+	go get github.com/golang/protobuf/proto@v1.5.4
 	make -C protoc-gen-gogo test
 	make -C vanity/test test
 	make -C test/registration test
